@@ -123,42 +123,24 @@ var sprintFunctions = {
 
   },
 
-  primes: function(){  
+  primes: function(input){
 
     // your code here
 
-      var prime_detector = function (input) {
+      var downstream_numbers = []
 
-              // put all the downstream numbers except 1/0 into an array for iterative evaluation later
-              var downstream_numbers = []
+      for (var i = 2; i < input; i++) {
+          downstream_numbers.push(i)
+      }
 
-              for (var i = input - 1; i > 1; i--) {
-                  downstream_numbers.push(i)
+      downstream_numbers.filter(function (element) {
+
+          for (var i = 2; i < element; i++) {
+              if (element % i === 0) {
+                  return false
               }
-
-
-              var prime_numbers = [] // This array will take the prime numbers. I'll return it at the end to complete the subroutine
-
-              //iterate through the list of downstream numbers
-              for (var i = downstream_numbers[0]; i <= downstream_numbers.length; i = downstream_numbers[i++]) {
-
-                  //Detect a clean division by ANY lower number between (but not including) 1 and input. But DO NOT return false; that kills the loop. Just ignore it (blank if, actionable else)
-
-                  for (var j = 2; j < input; j++) {
-                      if (x % j === 0) {
-
-                          // return false -- NO. This has been cancelling the loop. That's why it keeps returning empty. Just leave the if blank
-                      } else {
-
-                          prime_numbers.push(downstream_numbers[i])
-                      }
-                  }
-                  return prime_numbers
-              }
-
-              console.log(prime_detector(30))
-
-
-
-          },
+          }
+          return true; // if it doesn't find a clean division, return a true response and pass it through
+      })
+  },
 }
