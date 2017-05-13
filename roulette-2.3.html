@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Roulette Game</title>
+</head>
+<body>
+
+<script>
+
+    function roulette_game (x) {
+        this.balance = parseInt(x) // this is how we take the bankroll string. It is changed to a number.
+        this.spin = function (z) {
+            bet1 = parseInt(z[0]) // This part requires forethought. I have to know that I'll be creating an input array later. It does make sense since I know now that I need 2 ints. Now I know it's possible and can envision it later
+            bet2 = parseInt(z[1])
+
+            ball_landing = 1 + Math.floor(Math.random() * 37)
+
+            if (ball_landing === (bet1 || bet2)) {
+
+                /*                this.balance += 350
+
+                if (window.confirm(`${ball_landing}. You won $350. New balance: $${this.balance}. Play again?`)) {
+
+                    input1 = window.prompt("Enter 2 numbers to place $10 on, separated by a space")
+
+                    array1 = input1.split(' ');
+
+                    this.spin(array1) // This resets the very same method. array1 funnels 2 new z values which will be targeted by index, parsed, and loaded into the bet vars
+
+*/
+
+                } else {
+                console.log(ball_landing)
+                    this.balance -= 20
+                console.log(this.balance)
+                    if (window.confirm(`${ball_landing}. You lost $20. New balance: $${this.balance}. Play again?`)) {
+                        input1 = window.prompt("Enter 2 numbers to place $10 on, separated by a space")
+                        array1 = input1.split(' ')
+                        this.spin(array1)
+
+                    }
+            } 
+
+        }
+    }
+
+    //Trigger the game to begin by creating ("instantiating") a roulette game in a variable. A string is input, adjusted, converted to an int.
+
+    var game1 = new roulette_game(Math.floor(window.prompt("Enter your starting bankroll amount"))) // since I have a variable I can now run a method on it
+
+
+    //I want to take user input for the bets too. So we create a variable that takes a string (just like before). This time no calc is run on it but we split it into an array with 2 index values. later on it will also be converted to an int.
+
+    array1 = window.prompt("Enter 2 numbers to place $10 on, separated by a space").split(' ');
+
+//    game1.start_balance_query
+    game1.spin(array1)
+
+
+
+
+</script>
+
+
+</body>
+</html>

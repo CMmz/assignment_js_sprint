@@ -1,0 +1,49 @@
+<html>
+<script>
+
+function roulette (x) {
+    this.balance = parseInt(x); // take string x (from a prompt) and convert to an integer500
+    this.spin = function (z) {  // parse 2 space delimited inputs
+        bet1 = parseInt(z[0]);
+        bet2 = parseInt(z[1]);
+
+        ball_landing = 1 + Math.floor(Math.random() * 37)
+
+        if (ball_landing === (bet1 || bet2)) {
+            this.balance += 350
+
+            //
+            if (window.confirm(`${ball_landing}. You won $350. New balance: $${this.balance}. Play again?`)) {
+                input1 = window.prompt("Enter 2 numbers to place $10 on, separated by a space");
+
+                array1 = input1.split(' ');
+
+                this.spin(array1);
+            }
+
+        } else {
+            this.balance -= 20
+            if (window.confirm(`${ball_landing}. You lost $20. New balance: $${this.balance}. Play again?`)) {
+                input = window.prompt("Enter 2 numbers to place $10 on, separated by a space");
+                array = input.split(' ');
+                this.spin(array);
+
+            }
+        }
+
+    }
+}
+
+//Trigger the game to begin. User chooses bank balance
+var r1 = new roulette(Math.floor(window.prompt("Enter your starting bankroll amount")));
+
+array1 = window.prompt("Enter 2 numbers to place $10 on, separated by a space").split(' ');
+
+//array1 = input1.split(',');
+
+r1.spin(array1);
+
+
+
+</script>
+</html>

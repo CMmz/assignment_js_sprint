@@ -1,0 +1,48 @@
+<html>
+<script>
+
+
+
+function roulette (x) {
+    this.balance = parseInt(x);
+    this.spin = function (z) {
+        a = parseInt(z[0]);
+        b = parseInt(z[1]);
+        // spin puts $10 on 2 numbers, $20 total. A payout equals $350 (since only one number is hit). A random number function determines the ball landing number.. Balance is updated. Player is notified and asked about another spin.
+
+        ball_landing = 1 + Math.floor(Math.random() * 37)
+
+        if (ball_landing === (a || b)) {
+            this.balance += 350
+            if (window.confirm(ball_landing + " ${\n} You won $350. New balance: ${this.balance}. Play again?")) {
+                roulette.spin(window.prompt("Enter a number to place $10 on"));
+            }
+
+        } else {
+            this.balance -= 20
+            if (window.alert(`${ball_landing}. ${n}. You lost $20. New balance: ${this.balance}. Play again?`)) {
+                roulette.spin(window.prompt("Enter a number to place $10 on"));
+            }
+        }
+
+    }
+}
+
+//Trigger the game to begin. User chooses bank balance
+var r1 = new roulette(Math.floor(window.prompt("Enter your starting bankroll")));
+
+//Accept 2 inputs
+//x = window.prompt("Enter a number to place $10 on, 1");
+//y = window.prompt("Enter a number to place $10 on, 2");
+
+input = window.prompt("Enter a number to place $10 on");
+
+array = input.split(',');
+
+r1.spin(array);
+
+
+
+
+</script>
+</html>
